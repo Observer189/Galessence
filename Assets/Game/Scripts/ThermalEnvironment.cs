@@ -11,9 +11,13 @@ public class ThermalEnvironment : MMSingleton<ThermalEnvironment>
              "то используя эти два параметра мы устанавливаем тепловое равновесие, которое гарантирует, что" +
              "все объекты изначально будут иметь заданную температуру, до тех пор пока на них ни" +
              "подействуют другие источники излучения, например лазер")]
-    public float baseTemperature;
+    [SerializeField]
+    protected float baseTemperature;
      [Tooltip("Количество энергии, излучаемой всеми объектами. Иными словами как быстро остывают объекты.")]
-    public float baseCooling;
+     [SerializeField]
+    protected float baseCooling;
+    [SerializeField]
+    protected float heatTransferSpeed;
   
     //"Количество энергии, излучаемой всеми объектами. Иными словами как быстро остывают объекты."
    private float cooling;
@@ -27,6 +31,8 @@ public class ThermalEnvironment : MMSingleton<ThermalEnvironment>
     public float Emission => emission;
 
     public float Cooling => cooling;
+
+    public float HeatTransferSpeed => heatTransferSpeed;
     void Start()
     {
         cooling = baseCooling;

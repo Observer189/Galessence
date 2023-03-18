@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ public class ClassicMovement : MonoBehaviour
     public float maxSpeed;
     public float angularPower;
     public float angularSpeed;
+
+    public float MaxSpeed=>maxSpeed;
+    public float CalculatedAcceleration => calculatedAcceleration;
     
     private Vector2 speed;
     //Переменная используемая в случае если нам необходимо довести поворот объекта до определенной градусной меры
@@ -24,14 +28,13 @@ public class ClassicMovement : MonoBehaviour
 
     private float lastFrameSpeed;
     private float calculatedAcceleration;
-    //список всех сил воздействующих на корабль на этом кадре
-    private List<Vector2> affectedForces;
 
-    public float CalculatedAcceleration => calculatedAcceleration;
+    private Shell shell;
+    
     private void Awake()
     {
         shipBody = GetComponent<Rigidbody2D>();
-        affectedForces = new List<Vector2>();
+        shell = GetComponent<Shell>();
     }
 
     void Start()
@@ -82,16 +85,16 @@ public class ClassicMovement : MonoBehaviour
         if (targetMovement.y > 0)
         {
             //shipBody.AddForce(forwardDir.up*enginePower*Time.deltaTime,ForceMode2D.Impulse);
-            affectedForces.Add(forwardDir.up*mainEnginePower*Time.deltaTime);
+            shell.AddImpulse(forwardDir.up*mainEnginePower*Time.deltaTime);
         }
 
         if (throttleUse is { Item1: true, Item2: false })
         {
-            affectedForces.Add(-forwardDir.right*sideThrottlesPower*Time.deltaTime);
+            shell.AddImpulse(-forwardDir.right*sideThrottlesPower*Time.deltaTime);
         }
         else if(throttleUse is { Item2: true, Item1: false })
         {
-            affectedForces.Add(forwardDir.right*sideThrottlesPower*Time.deltaTime);
+            shell.AddImpulse(forwardDir.right*sideThrottlesPower*Time.deltaTime);
         }
         //Debug.Log($"Target: {-targetMovement.x*angularSpeed}, Current: {shipBody.angularVelocity}, Torque: {((-targetMovement.x*angularSpeed)-shipBody.angularVelocity)}");
         var targetAngularSpeed = (-targetMovement.x * angularSpeed);
@@ -100,17 +103,6 @@ public class ClassicMovement : MonoBehaviour
         torque = Mathf.Sign(torque)*Mathf.Min(Mathf.Abs(torque), angularPower);
         shipBody.AddTorque(torque,ForceMode2D.Impulse);
         
-        
-        if (affectedForces.Count > 0)
-        {
-            Vector2 resultantForce = affectedForces.Aggregate((Vector2 v1, Vector2 v2)=>v1+v2);
-            shipBody.AddForce(resultantForce,ForceMode2D.Impulse);
-            if (shipBody.velocity.sqrMagnitude > maxSpeed * maxSpeed)
-            {
-                shipBody.velocity = shipBody.velocity.normalized * maxSpeed;
-            }
-            affectedForces.Clear();
-        }
 
         targetRotation = null;
     }

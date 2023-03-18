@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 8646647227300348579}
   - component: {fileID: 8646647227300348576}
   - component: {fileID: 3594079480758004689}
+  - component: {fileID: 3379166431920804990}
   m_Layer: 8
   m_Name: Missile
   m_TagString: Untagged
@@ -581,6 +582,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeDestructionMode: 0
   TimeBeforeDestruction: 15
+--- !u!114 &3379166431920804990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646647227300348568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070ca54fffc9af2489e5799f109c7326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thermalCapacity: 500
+  baseTemperature: 390
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.45842552, g: 0, b: 1, a: 1}
+    key1: {r: 0, g: 0.7930951, b: 1, a: 1}
+    key2: {r: 0.15686274, g: 1, b: 0.7614973, a: 0}
+    key3: {r: 0, g: 1, b: 0.39595127, a: 0}
+    key4: {r: 0.5546204, g: 1, b: 0.12641507, a: 0}
+    key5: {r: 1, g: 0.9962425, b: 0, a: 0}
+    key6: {r: 1, g: 0.4442535, b: 0, a: 0}
+    key7: {r: 1, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 7132
+    ctime2: 13685
+    ctime3: 20624
+    ctime4: 27756
+    ctime5: 37008
+    ctime6: 48380
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  minImpulseToCollisionDamage: 1000
+  collisionDamageScale: 0
 --- !u!1 &8646647227464976808
 GameObject:
   m_ObjectHideFlags: 0
