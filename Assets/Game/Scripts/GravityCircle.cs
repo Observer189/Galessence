@@ -17,10 +17,38 @@ public class GravityCircle : MonoBehaviour
     [SerializeField]
     protected float maxForce;
     
-    
+    protected Material material; 
+
+    public float SmallRadius
+    {
+        get => smallRadius;
+        set
+        {
+            smallRadius = value;
+            material.SetFloat("_InnerRadius", smallRadius);
+        }
+    }
+
+    public float BigRadius
+    {
+        get => bigRadius;
+        set
+        {
+            bigRadius = value;
+            transform.localScale = new Vector3(bigRadius*2, bigRadius*2, 0);
+        }
+    }
+
+    private void Awake()
+    {
+        material = GetComponent<SpriteRenderer>().material;
+        
+    }
+
     void Start()
     {
-        
+        BigRadius = bigRadius;
+        SmallRadius = smallRadius;
     }
 
     // Update is called once per frame

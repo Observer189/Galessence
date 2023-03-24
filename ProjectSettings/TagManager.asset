@@ -53,3 +53,6 @@ TagManager:
   - name: Ships
     uniqueID: 498613225
     locked: 0
+  - name: SpaceDistortion
+    uniqueID: 1740719143
+    locked: 0
