@@ -11,6 +11,8 @@ public class ShipControl : MonoBehaviour
     private ShipOrder currentOrder;
 
     private Vector2 moveVec;
+
+    private Vector2 mousePos;
     private void Awake()
     {
         shipController = GetComponent<ShipController>();
@@ -19,8 +21,9 @@ public class ShipControl : MonoBehaviour
 
 
     private void Update()
-    {
-       shipController.UpdateOrder(currentOrder);
+    { 
+        currentOrder.aim = Camera.main.ScreenToWorldPoint(mousePos);
+        shipController.UpdateOrder(currentOrder);
     }
 
     private void FixedUpdate()
@@ -53,4 +56,9 @@ public class ShipControl : MonoBehaviour
         currentOrder.rightAdditionalMovement = callbackContext.performed;
     }
     
+    public void MousePosition(InputAction.CallbackContext callbackContext)
+    {
+        mousePos = callbackContext.ReadValue<Vector2>();
+        
+    }
 }

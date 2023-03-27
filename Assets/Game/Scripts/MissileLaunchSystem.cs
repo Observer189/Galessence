@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Scripts;
 using UnityEngine;
 
-public class MissileLaunchSystem : MonoBehaviour
+public class MissileLaunchSystem : MonoBehaviour, IShipActionController
 {
     [Tooltip("Минимальная пауза между запусками, которая используется даже если все ракеты заряжены")]
     public float timeBetweenLaunches;
@@ -19,6 +20,8 @@ public class MissileLaunchSystem : MonoBehaviour
     private float lastReloadTime;
 
     private Rigidbody2D shipBody;
+    
+    private ShipOrder currentOrder;
 
     private void Awake()
     {
@@ -48,5 +51,17 @@ public class MissileLaunchSystem : MonoBehaviour
             robinCounterReload = 0;
             lastReloadTime = Time.time;
         }
+        
+        if (currentOrder!=null && currentOrder.secondaryWeapon)
+        {
+            LaunchMissile();
+        }
     }
+
+    public void UpdateOrder(ShipOrder order)
+    {
+        currentOrder = order;
+    }
+
+    public ShipActionControllerType ControllerType => ShipActionControllerType.WeaponController;
 }

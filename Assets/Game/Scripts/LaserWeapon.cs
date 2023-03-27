@@ -6,7 +6,7 @@ using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class WeaponController : PropertyObject, IShipActionController 
+public class LaserWeapon : PropertyObject, IShipActionController 
 {
     [MMInspectorGroup("Beam Properties", true, 2)] 
     [SerializeField]
@@ -73,7 +73,7 @@ public class WeaponController : PropertyObject, IShipActionController
     // Update is called once per frame
     void Update()
     {
-        if (currentOrder.mainWeapon)
+        if (currentOrder!=null && currentOrder.mainWeapon)
         {
             LaserShooting();
         }
@@ -81,13 +81,7 @@ public class WeaponController : PropertyObject, IShipActionController
         {
             HideBeams();
         }
-
-        var missileLauncher = GetComponent<MissileLaunchSystem>();
-        if (currentOrder.secondaryWeapon)
-        {
-            missileLauncher.LaunchMissile();
-        }
-       
+        
     }
 
     protected void LaserShooting()

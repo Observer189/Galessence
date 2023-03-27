@@ -78,7 +78,7 @@ public class GravityCircle : MonoBehaviour
             objRadius = Mathf.Sqrt(objRadius);
             var impulseMagnitude = (objRadius - smallRadius)/(bigRadius-smallRadius)*(maxForce-minForce) + minForce;
             var dir = (Vector2)transform.position - other.attachedRigidbody.position.normalized;
-            Debug.Log(impulseMagnitude);
+            //Debug.Log(impulseMagnitude);
             shell.AddImpulse(dir*impulseMagnitude);
         }
     }
