@@ -24,7 +24,9 @@ public class Shell : PropertyObject
     protected float collisionDamageScale;
     [Tooltip("Фидбэк, вызываемый при столкновении нанесшем урон")]
     protected MMFeedbacks collisionFeedback;
-    
+
+    public Rigidbody2D Body => body;
+
     private ObjectProperty thermalEnergy;
     private Health health;
     
@@ -32,7 +34,7 @@ public class Shell : PropertyObject
     private List<Vector2> affectedForces;
     private HashSet<Shell> collidedShells;
     private Rigidbody2D body;
-    private ClassicMovement movementSystem;
+    private IMovementSystem movementSystem;
 
     public float Temperature => thermalEnergy.GetCurValue() / (thermalCapacity * body.mass);
     
@@ -47,7 +49,7 @@ public class Shell : PropertyObject
         affectedForces = new List<Vector2>();
         collidedShells = new HashSet<Shell>();
         health = GetComponent<Health>();
-        movementSystem = GetComponent<ClassicMovement>();
+        movementSystem = GetComponent<IMovementSystem>();
     }
 
     private void Update()
@@ -63,8 +65,8 @@ public class Shell : PropertyObject
         {
             if (otherShell != null)
             {
-                Debug.Log(Mathf.Min((otherShell.Temperature - Temperature)*thermalCapacity*body.mass,
-                    (otherShell.Temperature - Temperature) * ThermalEnvironment.Instance.HeatTransferSpeed*Time.deltaTime));
+                //Debug.Log(Mathf.Min((otherShell.Temperature - Temperature)*thermalCapacity*body.mass,
+                 //   (otherShell.Temperature - Temperature) * ThermalEnvironment.Instance.HeatTransferSpeed*Time.deltaTime));
                 var change = (otherShell.Temperature - Temperature) * ThermalEnvironment.Instance.HeatTransferSpeed*Time.deltaTime;
                 var balanceEnergyNeeded =
                     Mathf.Abs((otherShell.Temperature - Temperature) * thermalCapacity * body.mass);

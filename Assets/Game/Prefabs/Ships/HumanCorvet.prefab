@@ -178,6 +178,7 @@ Transform:
   - {fileID: 2627224130073134478}
   - {fileID: 2627224129861923340}
   - {fileID: 2627224130133093566}
+  - {fileID: 6928025370328159109}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,6 +309,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 35b85c26-666a-4f27-b694-e109008df74a
     m_ActionName: Standart/SecondaryFire[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b03fd29-303f-4548-839e-0bf6244132f9
+    m_ActionName: Standart/MouseMove[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Standart
@@ -337,6 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5854420c99581b46a02824053d10385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ControlledBy: 0
+  cameraTarget: {fileID: 2627224130298043674}
 --- !u!114 &2627224129724521340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8210feaa98874f0469332b93e4fa0dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties: []
   beamPrefab: {fileID: 2627224129413146326}
   beamTargetMask:
     serializedVersion: 2
@@ -388,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c7e0668930863479cc13afefb761a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties: []
   maxHealth: 50
   initialHealth: 50
   destroyOnDeath: 1
@@ -457,12 +466,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b4a314c326e1544a3f58daf8fb9fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties:
+  - property: {fileID: 11400000, guid: ea06b4684bb76f84f96f21d0adbd6608, type: 2}
+    baseValue: 2000
+    curValue: 2000
+  - property: {fileID: 11400000, guid: f60cb66a3de06be4a84cf5911f3b585a, type: 2}
+    baseValue: 5
+    curValue: 5
+  - property: {fileID: 11400000, guid: 181895fda139b2645a615d7e42e6a8e3, type: 2}
+    baseValue: 3
+    curValue: 3
+  - property: {fileID: 11400000, guid: c59c117ed92027446a520e58eac3135f, type: 2}
+    baseValue: 140
+    curValue: 140
   forwardDir: {fileID: 2627224129738125051}
-  mainEnginePower: 3000
   sideThrottlesPower: 2000
-  maxSpeed: 5
-  angularPower: 2
-  angularSpeed: 130
 --- !u!114 &2627224129724521335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070ca54fffc9af2489e5799f109c7326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties: []
   thermalCapacity: 1000
   baseTemperature: 350
   gradient:
@@ -715,6 +734,50 @@ Transform:
   m_Father: {fileID: 2627224129724521339}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7517387850300592307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6928025370328159109}
+  - component: {fileID: 2681863679383313109}
+  m_Layer: 7
+  m_Name: AIMind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6928025370328159109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7517387850300592307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2627224129724521339}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2681863679383313109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7517387850300592307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9612c5fa12b0049a29a76527e0a698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2627224129463986287
 PrefabInstance:
   m_ObjectHideFlags: 0

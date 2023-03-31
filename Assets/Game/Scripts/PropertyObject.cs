@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PropertyObject : MonoBehaviour
 {
+    public PropertyInitializationInfo[] objectProperties;
+    
     protected PropertyManager _propertyManager;
     protected ShipController owner;
     public virtual void Initialize() //Иногда может выполниться раньше собственного Awake. Это нужно, чтобы к моменту инициализации способностей, все свойства были уже заданы
@@ -22,4 +25,19 @@ public class PropertyObject : MonoBehaviour
             Initialize();
         }
     }
+
+    protected void Start()
+    {
+        foreach (var property in objectProperties)
+        {
+            _propertyManager.AddProperty(property.property, property.baseValue, property.curValue);
+        }
+    }
+}
+[Serializable]
+public class PropertyInitializationInfo
+{
+    public ObjectPropertyDescription property;
+    public float baseValue;
+    public float curValue;
 }

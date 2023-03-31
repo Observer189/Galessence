@@ -35,7 +35,7 @@ public class MovementController : MonoBehaviour, IShipActionController
     private void OnGUI()
     {
         GUI.TextField(new Rect(20, 30, 200, 200), 
-            $"max speed = {movementSystem.maxSpeed},\n speed = {GetComponent<Rigidbody2D>().velocity.magnitude}\n" +
+            $"max speed = {movementSystem.MaxSpeed},\n speed = {GetComponent<Rigidbody2D>().velocity.magnitude}\n" +
             $"calculated acceleration = {movementSystem.CalculatedAcceleration}\n" +
             $"angular velocity = {GetComponent<Rigidbody2D>().angularVelocity}\n" +
             $"Temperature = {GetComponent<Shell>().Temperature}");

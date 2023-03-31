@@ -1,3 +1,8 @@
 ﻿1 - Health
 2 - EnergyDamage
+3 - PhysicalDamage
+4 - EnginePower
+5 - MaxSpeed
+6 - AngularPower
+7 - MaxAngularSpeed
 10 - ThermalEnergy

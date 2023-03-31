@@ -10,7 +10,7 @@ public class ShipOrder
 {
     //Describes ship movement
     public Vector2 movement;
-    //If true than movement vector is considered as point in world space that ship want to be headed
+    //If true then movement vector is considered as point in world space that ship want to be headed
     //If false than considered y-axis as gas/brake and x as rotate left/right
     public bool movementIsDirection;
     //Mouse pointer in world space or target for ship's weapons for AI

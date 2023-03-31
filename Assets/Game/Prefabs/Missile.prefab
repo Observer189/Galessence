@@ -456,12 +456,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b4a314c326e1544a3f58daf8fb9fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties:
+  - property: {fileID: 11400000, guid: ea06b4684bb76f84f96f21d0adbd6608, type: 2}
+    baseValue: 300
+    curValue: 300
+  - property: {fileID: 11400000, guid: f60cb66a3de06be4a84cf5911f3b585a, type: 2}
+    baseValue: 8
+    curValue: 8
+  - property: {fileID: 11400000, guid: 181895fda139b2645a615d7e42e6a8e3, type: 2}
+    baseValue: 1
+    curValue: 1
+  - property: {fileID: 11400000, guid: c59c117ed92027446a520e58eac3135f, type: 2}
+    baseValue: 130
+    curValue: 130
   forwardDir: {fileID: 8646647227464976811}
-  mainEnginePower: 200
   sideThrottlesPower: 0
-  maxSpeed: 8
-  angularPower: 100
-  angularSpeed: 100
 --- !u!114 &8646647227300348570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +487,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   VisionRadius: 30
-  VisionAngle: 270
+  VisionAngle: 300
   Direction: {x: 0, y: 0, z: 0}
   EulerAngles: {x: 0, y: 0, z: 0}
   ShouldScanForTargets: 1
@@ -532,6 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c7e0668930863479cc13afefb761a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties: []
   maxHealth: 3
   initialHealth: 3
   destroyOnDeath: 1
@@ -594,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070ca54fffc9af2489e5799f109c7326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectProperties: []
   thermalCapacity: 500
   baseTemperature: 390
   gradient:
