@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AIMind : MonoBehaviour
 {
-   public bool IsActive;
+   public bool IsActive=false;
 
    protected ShipController ship;
 
@@ -16,13 +16,13 @@ public class AIMind : MonoBehaviour
 
    public void Update()
    {
+      if (!IsActive) return;
       ShipOrder order = new ShipOrder();
       order.movement = new Vector2(0, 1);
 
       ShipController target = null;
       //var mask = LayerMask.NameToLayer("Ships");
       var hit = Physics2D.OverlapCircleAll(ship.transform.position, 30);
-      Debug.Log(hit.Length);
       foreach (var col in hit)
       {
          var shipController = col.GetComponent<ShipController>();
@@ -38,7 +38,7 @@ public class AIMind : MonoBehaviour
          order.movementIsDirection = true;
          
       }
-      Debug.Log(order.movement);
+      //Debug.Log(order.movement);
       ship.UpdateOrder(order);
    }
 }

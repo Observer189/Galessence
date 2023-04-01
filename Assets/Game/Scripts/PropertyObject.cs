@@ -26,7 +26,7 @@ public class PropertyObject : MonoBehaviour
         }
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         foreach (var property in objectProperties)
         {

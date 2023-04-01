@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 2627224129724521329}
   - component: {fileID: 2627224129724521334}
   - component: {fileID: 2627224129724521332}
+  - component: {fileID: 7269114279064299816}
   m_Layer: 7
   m_Name: HumanCorvet
   m_TagString: Untagged
@@ -384,6 +385,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 88996b0a1aa3c7849a557204b4a12d8d, type: 2}
   - {fileID: 11400000, guid: 957862211c54e1c4d82f2812704cf9c6, type: 2}
   energyDamage: 5
+  energyConsumption: 35
 --- !u!114 &2627224129724521341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +581,26 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minImpulseToCollisionDamage: 2
   collisionDamageScale: 1
+--- !u!114 &7269114279064299816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627224129724521284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3990c9e5660614d888981d58f5003e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectProperties:
+  - property: {fileID: 11400000, guid: aa7f2e316bdce7c45942b01f5fedfc0d, type: 2}
+    baseValue: 100
+    curValue: 100
+  - property: {fileID: 11400000, guid: fad545a2ce59d044c8ea3256c412c3f1, type: 2}
+    baseValue: 20
+    curValue: 20
+  recoverDelay: 0.5
 --- !u!1 &2627224129738125050
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9612c5fa12b0049a29a76527e0a698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
 --- !u!1001 &2627224129463986287
 PrefabInstance:
   m_ObjectHideFlags: 0

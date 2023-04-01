@@ -29,12 +29,20 @@ public class ShipController : MonoBehaviour
             
             var m = GetComponentInChildren<AIMind>();
             m.SetShip(this);
+            m.IsActive = true;
         }
         else if(ControlledBy == ShipOwnerType.Player)
         {
-            CameraManager.Instance.SetFollowTarget(cameraTarget);
             var m = GetComponentInChildren<AIMind>();
             Destroy(m.gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if (ControlledBy == ShipOwnerType.Player)
+        {
+            CameraManager.Instance.SetFollowTarget(cameraTarget);
         }
     }
 
@@ -50,6 +58,7 @@ public class ShipController : MonoBehaviour
         {
             controller.UpdateOrder(order);
         }
+        //Debug.Log(order.movement);
     }
 
     public void Kill()

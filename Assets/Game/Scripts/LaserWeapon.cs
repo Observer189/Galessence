@@ -34,6 +34,8 @@ public class LaserWeapon : PropertyObject, IShipActionController
     protected EffectDescription[] effects;
     [SerializeField]
     protected float energyDamage;
+    [SerializeField]
+    protected float energyConsumption;
 
     protected float lastAttackTime;
 
@@ -75,13 +77,16 @@ public class LaserWeapon : PropertyObject, IShipActionController
     {
         if (currentOrder!=null && currentOrder.mainWeapon)
         {
-            LaserShooting();
+            var energy = _propertyManager.GetPropertyById(8);
+            if (energy.GetCurValue() > energyConsumption * Time.deltaTime)
+            {
+                LaserShooting();
+                energy.ChangeCurValue(-energyConsumption*Time.deltaTime);
+                return;
+            }
         }
-        else
-        {
-            HideBeams();
-        }
-        
+       
+        HideBeams();
     }
 
     protected void LaserShooting()
