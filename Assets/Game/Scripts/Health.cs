@@ -32,6 +32,7 @@ public class Health : PropertyObject
 
     protected bool isAlive = true;
 
+    public float HP => hProperty.GetCurValue();
     public bool IsAlive => isAlive;
 
     public override void Initialize()

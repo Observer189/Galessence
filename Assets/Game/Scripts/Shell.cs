@@ -16,6 +16,12 @@ public class Shell : PropertyObject
     [Tooltip("Стартовая температура тела")]
     [SerializeField]
     protected float baseTemperature;
+
+    [Tooltip("Система температурных ограничений. При достижении определенной температуры объект будет" +
+             "получать указанное количество урона в секунду. Также урон будет линейно интерполироваться между указанными" +
+             "ограничесниями")]
+    [SerializeField]
+    protected TemperatureThreshold[] temperatureThresholds;
     [SerializeField]
     protected Gradient gradient;
     [SerializeField]
@@ -101,6 +107,39 @@ public class Shell : PropertyObject
                 sprite.color = Color.white;
         }
         
+
+        #endregion
+
+        #region TemperatureDamage
+
+        if (temperatureThresholds!=null && temperatureThresholds.Length > 0)
+        {
+            ///Находим тот диапазон в котором лежит наша температура
+            int diapNum = -1;
+            for (int i = 0; i < temperatureThresholds.Length; i++)
+            {
+                if(Temperature < temperatureThresholds[i].Threshold) break;
+                diapNum = i;
+            }
+
+            if (diapNum != -1)
+            {
+                ///Если вышли за крайний диапазон, то мгновенно убиваем объект
+                if (diapNum == temperatureThresholds.Length - 1)
+                {
+                    health.DoDamage(health.HP);
+                }
+                else
+                {
+                    ///Интерполируем урон в дипазоне
+                    float dmg = (temperatureThresholds[diapNum].Damage + temperatureThresholds[diapNum + 1].Damage) / 2;
+                    dmg *= Time.deltaTime;
+                    health.DoDamage(dmg);
+                    Debug.Log(dmg);
+                }
+            }
+            
+        }
 
         #endregion
 
@@ -208,4 +247,10 @@ public class Shell : PropertyObject
             }
         }
     }
+}
+[Serializable]
+public class TemperatureThreshold
+{
+    public float Threshold;
+    public float Damage;
 }

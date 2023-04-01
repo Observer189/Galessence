@@ -550,6 +550,15 @@ MonoBehaviour:
   objectProperties: []
   thermalCapacity: 1000
   baseTemperature: 350
+  temperatureThresholds:
+  - Threshold: 575
+    Damage: 1
+  - Threshold: 630
+    Damage: 3
+  - Threshold: 700
+    Damage: 10
+  - Threshold: 800
+    Damage: 30
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}

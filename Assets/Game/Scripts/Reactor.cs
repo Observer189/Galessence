@@ -26,7 +26,7 @@ public class Reactor : PropertyObject
             energy.ChangeCurValue(eGen.GetCurValue() * Time.deltaTime);
         }
 
-        Debug.Log(energy.GetCurValue());
+        //Debug.Log(energy.GetCurValue());
     }
 
     protected void OnEnergyChanged(float oldCurValue, float newCurValue, float oldValue, float newValue)
