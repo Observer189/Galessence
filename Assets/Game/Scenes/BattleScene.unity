@@ -233,6 +233,15 @@ MonoBehaviour:
   objectProperties: []
   thermalCapacity: 1000
   baseTemperature: 350
+  temperatureThresholds:
+  - Threshold: 700
+    Damage: 1
+  - Threshold: 800
+    Damage: 5
+  - Threshold: 900
+    Damage: 10
+  - Threshold: 1000
+    Damage: 30
   gradient:
     serializedVersion: 2
     key0: {r: 0.45842552, g: 0, b: 1, a: 1}
@@ -385,7 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5854420c99581b46a02824053d10385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ControlledBy: 0
   cameraTarget: {fileID: 876734420}
 --- !u!114 &66465255
 MonoBehaviour:
@@ -394,7 +402,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66465243}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beef74d83d0473344a830bad1075d6b1, type: 3}
   m_Name: 
@@ -522,7 +530,7 @@ MonoBehaviour:
     m_ActionId: 4b03fd29-303f-4548-839e-0bf6244132f9
     m_ActionName: Standart/New action
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Standart
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Standart
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -732,6 +740,38 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!1 &142094243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142094244}
+  m_Layer: 0
+  m_Name: Players
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142094244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142094243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1751918976}
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &231920257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3204,6 +3244,194 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732833945}
   m_CullTransparentMesh: 1
+--- !u!1 &1751918975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751918976}
+  - component: {fileID: 1751918977}
+  - component: {fileID: 1751918978}
+  - component: {fileID: 1751918979}
+  m_Layer: 0
+  m_Name: RealPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1751918976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751918975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 142094244}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751918977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751918975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9b5a3910beb014fa8ddeac4e230ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Alex
+  playerType: 0
+  ship: {fileID: 66465254}
+--- !u!114 &1751918978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751918975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beef74d83d0473344a830bad1075d6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1751918979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751918975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: fcead94aaa033b4429a5e017607a1960,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1751918978}
+        m_TargetAssemblyTypeName: ShipControl, Assembly-CSharp
+        m_MethodName: MainWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a3df2055-4066-43df-94d9-66895888cf3d
+    m_ActionName: Standart/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1751918978}
+        m_TargetAssemblyTypeName: ShipControl, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 32a6ed6f-d374-47f4-b7f4-bd01dc738213
+    m_ActionName: Standart/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1751918978}
+        m_TargetAssemblyTypeName: ShipControl, Assembly-CSharp
+        m_MethodName: LeftThrottle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 03e01cba-4b26-4176-823d-f73aca941b09
+    m_ActionName: Standart/LeftThrottle[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1751918978}
+        m_TargetAssemblyTypeName: ShipControl, Assembly-CSharp
+        m_MethodName: RightThrottle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 62387c02-e768-45d4-b62e-6088280ed904
+    m_ActionName: Standart/RightThrottle[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1751918978}
+        m_TargetAssemblyTypeName: ShipControl, Assembly-CSharp
+        m_MethodName: SecondaryWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 35b85c26-666a-4f27-b694-e109008df74a
+    m_ActionName: Standart/SecondaryFire[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1751918978}
+        m_TargetAssemblyTypeName: ShipControl, Assembly-CSharp
+        m_MethodName: MousePosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4b03fd29-303f-4548-839e-0bf6244132f9
+    m_ActionName: Standart/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Standart
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!4 &1757925824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2627224130298043674, guid: 3f75216f8aa109146adc0cc1fd250c96,
@@ -3751,9 +3979,11 @@ PrefabInstance:
     - target: {fileID: 2627224129724521342, guid: 3f75216f8aa109146adc0cc1fd250c96,
         type: 3}
       propertyPath: ControlledBy
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2627224129724521337, guid: 3f75216f8aa109146adc0cc1fd250c96, type: 3}
+    - {fileID: 2627224129724521336, guid: 3f75216f8aa109146adc0cc1fd250c96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f75216f8aa109146adc0cc1fd250c96, type: 3}
 --- !u!114 &4746622922813322761
 MonoBehaviour:
@@ -3938,6 +4168,7 @@ MonoBehaviour:
   objectProperties: []
   thermalCapacity: 500
   baseTemperature: 380
+  temperatureThresholds: []
   gradient:
     serializedVersion: 2
     key0: {r: 0.45842552, g: 0, b: 1, a: 1}

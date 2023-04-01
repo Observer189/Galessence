@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a55cc62a9377bb4c89db4295c52df8f, type: 3}
   m_Name: EnergyGeneration
   m_EditorClassIdentifier: 
-  name: 
-  shortName: 
-  id: 0
-  imageName: 
+  name: EnergyGeneration
+  shortName: EG
+  id: 9
+  imageName: EnergyGeneration
   cap: 0
   curCap: 0
-  useValueOnly: 0
+  useValueOnly: 1
   description: 

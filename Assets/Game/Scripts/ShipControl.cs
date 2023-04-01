@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class ShipControl : MonoBehaviour
 {
     
-    private ShipController shipController;
+    private VirtualPlayer player;
     private ShipOrder currentOrder;
 
     private Vector2 moveVec;
@@ -15,7 +15,7 @@ public class ShipControl : MonoBehaviour
     private Vector2 mousePos;
     private void Awake()
     {
-        shipController = GetComponent<ShipController>();
+        player = GetComponent<VirtualPlayer>();
         currentOrder = new ShipOrder();
     }
 
@@ -23,7 +23,7 @@ public class ShipControl : MonoBehaviour
     private void Update()
     { 
         currentOrder.aim = Camera.main.ScreenToWorldPoint(mousePos);
-        shipController.UpdateOrder(currentOrder);
+        player.UpdateOrder(currentOrder);
     }
 
     private void FixedUpdate()

@@ -2,4 +2,5 @@
 2 - MissileHit
 3 - LaserHeat
 4 - BulletHit
-5 - Afterburn
+5 - FullAfterburn
+6 - SideAfterburn

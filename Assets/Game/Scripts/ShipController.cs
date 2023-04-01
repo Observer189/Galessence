@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class ShipController : MonoBehaviour
 {
-    public ShipOwnerType ControlledBy;
+    protected VirtualPlayer owner;
     public Transform cameraTarget; 
     
     private Rigidbody2D body;
@@ -17,33 +17,22 @@ public class ShipController : MonoBehaviour
     private IShipActionController[] controllers;
     
     public bool IsAlive { get; private set; } = true;
+
+    public VirtualPlayer Owner
+    {
+        get => owner;
+        set => owner = value;
+    }
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         controllers = GetComponents<IShipActionController>();
-
-        if (ControlledBy == ShipOwnerType.AI)
-        {
-            GetComponent<PlayerInput>().enabled = false;
-            GetComponent<ShipControl>().enabled = false;
-            
-            var m = GetComponentInChildren<AIMind>();
-            m.SetShip(this);
-            m.IsActive = true;
-        }
-        else if(ControlledBy == ShipOwnerType.Player)
-        {
-            var m = GetComponentInChildren<AIMind>();
-            Destroy(m.gameObject);
-        }
+        
     }
 
     private void Start()
     {
-        if (ControlledBy == ShipOwnerType.Player)
-        {
-            CameraManager.Instance.SetFollowTarget(cameraTarget);
-        }
+       
     }
 
     private void Update()

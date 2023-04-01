@@ -32,6 +32,12 @@ public class ShipOrder
     {
     }
 
+    public ShipOrder GetCopy()
+    {
+        return new ShipOrder(movement, movementIsDirection, aim, mainWeapon, secondaryWeapon, leftAdditionalMovement,
+            rightAdditionalMovement, special1, special2);
+    }
+
     public ShipOrder(Vector2 movement, bool movementIsDirection, Vector2 aim, bool mainWeapon, 
         bool secondaryWeapon, bool leftAdditionalMovement, bool rightAdditionalMovement, bool special1, bool special2)
     {

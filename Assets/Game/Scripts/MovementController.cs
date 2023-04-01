@@ -22,8 +22,12 @@ public class MovementController : MonoBehaviour, IShipActionController
     // Update is called once per frame
     void Update()
     {
-        movementSystem.SetMovement(currentOrder.movement);
-        movementSystem.SetUseThrottles(currentOrder.leftAdditionalMovement,currentOrder.rightAdditionalMovement);
+        if (currentOrder != null)
+        {
+            movementSystem.SetMovement(currentOrder.movement);
+            movementSystem.SetUseThrottles(currentOrder.leftAdditionalMovement, currentOrder.rightAdditionalMovement);
+        }
+
         movementSystem.ProcessMovement();
     }
 
