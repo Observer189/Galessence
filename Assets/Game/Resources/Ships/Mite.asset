@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe03138689d4f0c45b10c816f3dfe03a, type: 3}
+  m_Name: Mite
+  m_EditorClassIdentifier: 
+  name: Mite
+  length: 0.41
+  width: 0.25
+  prefab: {fileID: 2627224129724521284, guid: 3f75216f8aa109146adc0cc1fd250c96, type: 3}
+  aiMindPrefab: {fileID: 3329721283988675068, guid: 874d03fbc1e401d4b9a0a20e28962462,
+    type: 3}

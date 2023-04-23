@@ -219,3 +219,4 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minImpulseToCollisionDamage: 5
   collisionDamageScale: 1
+  model: {fileID: 5673116896773760661}

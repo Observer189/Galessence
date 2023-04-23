@@ -9,10 +9,11 @@ using UnityEngine;
 public class ShipOrder
 {
     //Describes ship movement
-    public Vector2 movement;
+    public Vector3 movement;
     //If true then movement vector is considered as point in world space that ship want to be headed
+    //as follows: y is gas/brake and (x,z) is (x,y) coordinates of rotation target in world space
     //If false than considered y-axis as gas/brake and x as rotate left/right
-    public bool movementIsDirection;
+    public bool movementHasRotationDirection;
     //Mouse pointer in world space or target for ship's weapons for AI
     public Vector2 aim;
     //Whether main weapon is firing or not
@@ -34,15 +35,15 @@ public class ShipOrder
 
     public ShipOrder GetCopy()
     {
-        return new ShipOrder(movement, movementIsDirection, aim, mainWeapon, secondaryWeapon, leftAdditionalMovement,
+        return new ShipOrder(movement, movementHasRotationDirection, aim, mainWeapon, secondaryWeapon, leftAdditionalMovement,
             rightAdditionalMovement, special1, special2);
     }
 
-    public ShipOrder(Vector2 movement, bool movementIsDirection, Vector2 aim, bool mainWeapon, 
+    public ShipOrder(Vector3 movement, bool movementHasRotationDirection, Vector2 aim, bool mainWeapon, 
         bool secondaryWeapon, bool leftAdditionalMovement, bool rightAdditionalMovement, bool special1, bool special2)
     {
         this.movement = movement;
-        this.movementIsDirection = movementIsDirection;
+        this.movementHasRotationDirection = movementHasRotationDirection;
         this.aim = aim;
         this.mainWeapon = mainWeapon;
         this.secondaryWeapon = secondaryWeapon;

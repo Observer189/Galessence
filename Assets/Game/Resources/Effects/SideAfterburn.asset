@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e018b4a0348f1429fb99fef3face94, type: 3}
   m_Name: SideAfterburn
   m_EditorClassIdentifier: 
-  id: 0
-  duration: 0
+  id: 6
+  duration: -1
   needDeltaNormalization: 0
-  chance: 0
-  maxStackCount: 0
+  chance: 1
+  maxStackCount: 1
   nature: 0
-  impacts: []
+  impacts:
+  - targetId: 6
+    type: 5
+    defaultValue: 2.5
+    propertyId: -1
+  - targetId: 7
+    type: 5
+    defaultValue: 2
+    propertyId: -1

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe03138689d4f0c45b10c816f3dfe03a, type: 3}
+  m_Name: Gork
+  m_EditorClassIdentifier: 
+  name: Gork
+  length: 0.37
+  width: 0.74
+  prefab: {fileID: 2543605597925534696, guid: 5e82cd6d7726f244a9aef9cd58bb5b82, type: 3}
+  aiMindPrefab: {fileID: 2117129321984668351, guid: a7f6599319ecea14eb8f2d9af35ff443,
+    type: 3}

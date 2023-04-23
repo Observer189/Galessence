@@ -9,8 +9,11 @@ using UnityEngine.InputSystem;
 public class ShipController : MonoBehaviour
 {
     protected VirtualPlayer owner;
-    public Transform cameraTarget; 
-    
+    public ShipInfo info;
+    public Transform cameraTarget;
+
+    public PropertyManager PropertyManager { get; private set; }
+
     private Rigidbody2D body;
     private ShipOrder currentOrder;
 
@@ -32,7 +35,7 @@ public class ShipController : MonoBehaviour
 
     private void Start()
     {
-       
+        PropertyManager = GetComponent<PropertyManager>();
     }
 
     private void Update()

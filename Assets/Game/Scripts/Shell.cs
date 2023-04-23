@@ -28,6 +28,8 @@ public class Shell : PropertyObject
     protected float minImpulseToCollisionDamage;
     [SerializeField]
     protected float collisionDamageScale;
+    [SerializeField]
+    protected SpriteRenderer model;
     [Tooltip("Фидбэк, вызываемый при столкновении нанесшем урон")]
     protected MMFeedbacks collisionFeedback;
 
@@ -94,10 +96,10 @@ public class Shell : PropertyObject
             collidedShells.Remove(destroyedShells[i]);
         }
         thermalEnergy.ChangeCurValue(heating);
-        var sprite = GetComponent<SpriteRenderer>();
+        var sprite = model;
         if (Input.GetKey(KeyCode.Space))
         {
-            sprite = GetComponent<SpriteRenderer>();
+            //sprite = GetComponent<SpriteRenderer>();
             if (sprite != null)
                 sprite.color = gradient.Evaluate(Temperature / 2000);
         }
@@ -135,7 +137,7 @@ public class Shell : PropertyObject
                     float dmg = (temperatureThresholds[diapNum].Damage + temperatureThresholds[diapNum + 1].Damage) / 2;
                     dmg *= Time.deltaTime;
                     health.DoDamage(dmg);
-                    Debug.Log(dmg);
+                    //Debug.Log(dmg);
                 }
             }
             

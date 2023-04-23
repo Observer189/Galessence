@@ -30,6 +30,7 @@ public class ClassicMovement : PropertyObject, IMovementSystem
     private (bool, bool) throttleUse;
 
     private float lastFrameSpeed;
+    private float lastFrameAngularSpeed;
     private float calculatedAcceleration;
 
     private Shell shell;
@@ -69,11 +70,12 @@ public class ClassicMovement : PropertyObject, IMovementSystem
         var angle = Vector2.SignedAngle(forwardDir.up, dirToTarget);
         //Debug.Log(angularSpeed*Time.deltaTime*2);
         //Debug.Log(angle);
-        if (Mathf.Abs(angle)<angularSpeed*Time.deltaTime*2)
+        if (Mathf.Abs(angle)<angularSpeed*Time.deltaTime*6)
         {
             targetMovement.x = 0;
             
-            targetRotation = Vector2.Angle(Vector2.up, dirToTarget);
+            //targetRotation = Vector2.Angle(Vector2.up, dirToTarget);
+            targetRotation = angle;
         }
         else if(angle<0)
         {
@@ -105,13 +107,30 @@ public class ClassicMovement : PropertyObject, IMovementSystem
             shell.AddImpulse(forwardDir.right*sideThrottlesPower*Time.deltaTime);
         }
         //Debug.Log($"Target: {-targetMovement.x*angularSpeed}, Current: {shipBody.angularVelocity}, Torque: {((-targetMovement.x*angularSpeed)-shipBody.angularVelocity)}");
+        
+        
+        
         var targetAngularSpeed = (-targetMovement.x * AngularSpeed);
-        if (targetRotation != null) targetAngularSpeed = targetRotation.Value;
-        var torque = (targetAngularSpeed - shipBody.angularVelocity) * Mathf.Deg2Rad * shipBody.inertia;
+        if (targetRotation != null)
+        {
+            if (Mathf.Abs(targetRotation.Value)<0.1f)
+            {
+                targetRotation = 0;
+            }
+            targetAngularSpeed = targetRotation.Value;
+            //Debug.Log(targetRotation.Value);
+            //Debug.Log((AngularPower/shipBody.inertia)*Mathf.Rad2Deg);
+            /*Debug.Log($"Target angular speed: {shipBody.angularVelocity}");
+            Debug.Log($"Estimated acceleration: {targetAngularSpeed - shipBody.angularVelocity}");
+            Debug.Log($"Calculated acceleration: {shipBody.angularVelocity - lastFrameAngularSpeed}");*/
+        }
+        lastFrameAngularSpeed = shipBody.angularVelocity;
+        //Debug.Log(targetRotation);
+        var torque = (targetAngularSpeed - shipBody.angularVelocity)*20* Mathf.Deg2Rad * shipBody.inertia;
         torque = Mathf.Sign(torque)*Mathf.Min(Mathf.Abs(torque), AngularPower);
         shipBody.AddTorque(torque,ForceMode2D.Impulse);
-        
 
+        
         targetRotation = null;
     }
     

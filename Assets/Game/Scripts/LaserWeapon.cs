@@ -48,7 +48,13 @@ public class LaserWeapon : PropertyObject, IShipActionController
     // Start is called before the first frame update
 
     private ShipOrder currentOrder;
-    
+
+    public Transform BeamStartPosition => beamStartPosition;
+
+    public float BeamRange => beamRange;
+
+    public LayerMask BeamTargetMask => beamTargetMask;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -67,7 +73,8 @@ public class LaserWeapon : PropertyObject, IShipActionController
             beamRenderer.endWidth = beamWidth;
             beamRenderers.Add(beamRenderer);
             beamRenderer.gameObject.SetActive(false);
-            beamRenderer.transform.parent = null;
+            beamRenderer.transform.parent = transform;
+            Debug.Log("Add beam renderer!");
         }
         
     }

@@ -9,6 +9,7 @@ public class ShipControl : MonoBehaviour
     
     private VirtualPlayer player;
     private ShipOrder currentOrder;
+    private CameraOrder currentCameraOrder;
 
     private Vector2 moveVec;
 
@@ -17,6 +18,7 @@ public class ShipControl : MonoBehaviour
     {
         player = GetComponent<VirtualPlayer>();
         currentOrder = new ShipOrder();
+        currentCameraOrder = new CameraOrder();
     }
 
 
@@ -24,6 +26,7 @@ public class ShipControl : MonoBehaviour
     { 
         currentOrder.aim = Camera.main.ScreenToWorldPoint(mousePos);
         player.UpdateOrder(currentOrder);
+        player.UpdateCameraOrder(currentCameraOrder);
     }
 
     private void FixedUpdate()
@@ -36,6 +39,7 @@ public class ShipControl : MonoBehaviour
     public void Move(InputAction.CallbackContext callbackContext)
     {
         currentOrder.movement = callbackContext.ReadValue<Vector2>();
+        currentCameraOrder.movement = callbackContext.ReadValue<Vector2>();
     }
     
     public void MainWeapon(InputAction.CallbackContext callbackContext)
@@ -59,6 +63,16 @@ public class ShipControl : MonoBehaviour
     public void MousePosition(InputAction.CallbackContext callbackContext)
     {
         mousePos = callbackContext.ReadValue<Vector2>();
-        
+        currentCameraOrder.mouseAim = callbackContext.ReadValue<Vector2>();
+    }
+    
+    public void CameraModeChange(InputAction.CallbackContext callbackContext)
+    {
+        currentCameraOrder.changeMode = callbackContext.performed;
+    }
+    
+    public void Zoom(InputAction.CallbackContext callbackContext)
+    {
+        currentCameraOrder.zoom = callbackContext.ReadValue<float>();
     }
 }

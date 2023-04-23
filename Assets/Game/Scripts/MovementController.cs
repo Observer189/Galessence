@@ -24,7 +24,15 @@ public class MovementController : MonoBehaviour, IShipActionController
     {
         if (currentOrder != null)
         {
-            movementSystem.SetMovement(currentOrder.movement);
+            if (currentOrder.movementHasRotationDirection)
+            {
+                movementSystem.SetMovement(new Vector2(0,currentOrder.movement.y));
+                movementSystem.SetRotationTo(new Vector2(currentOrder.movement.x,currentOrder.movement.z));
+            }
+            else
+            {
+                movementSystem.SetMovement(currentOrder.movement);
+            }
             movementSystem.SetUseThrottles(currentOrder.leftAdditionalMovement, currentOrder.rightAdditionalMovement);
         }
 

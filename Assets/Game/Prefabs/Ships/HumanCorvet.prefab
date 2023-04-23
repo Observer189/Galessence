@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5854420c99581b46a02824053d10385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: 85359fc4ec003c443824f3b662ea7623, type: 2}
   cameraTarget: {fileID: 2627224130298043674}
 --- !u!114 &2627224129724521340
 MonoBehaviour:
@@ -243,7 +244,7 @@ MonoBehaviour:
   beamPrefab: {fileID: 2627224129413146326}
   beamTargetMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1216
   beamStartPosition: {fileID: 2627224130073134478}
   beamRange: 50
   beamWidth: 0.01
@@ -460,6 +461,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minImpulseToCollisionDamage: 2
   collisionDamageScale: 1
+  model: {fileID: 0}
 --- !u!114 &7269114279064299816
 MonoBehaviour:
   m_ObjectHideFlags: 0

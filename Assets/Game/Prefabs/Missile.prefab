@@ -278,7 +278,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8646647225916172474}
   - component: {fileID: 8646647225916172357}
-  m_Layer: 0
+  - component: {fileID: 8211392628545238707}
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,6 +353,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8211392628545238707
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646647225916172475}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.08, y: 0.25}
+    newSize: {x: 0.08, y: 0.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &8646647227300348568
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,8 +632,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectProperties: []
-  thermalCapacity: 500
+  thermalCapacity: 0.5
   baseTemperature: 390
+  temperatureThresholds: []
   gradient:
     serializedVersion: 2
     key0: {r: 0.45842552, g: 0, b: 1, a: 1}
@@ -638,6 +666,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   minImpulseToCollisionDamage: 1000
   collisionDamageScale: 0
+  model: {fileID: 8646647225916172357}
 --- !u!1 &8646647227464976808
 GameObject:
   m_ObjectHideFlags: 0
