@@ -8,6 +8,7 @@ public class AIPerception
 
     protected ShipController closestShip;
 
+    public Transform navigationTarget;
     public List<ShipController> EnemyShips => enemyShips;
 
     public ShipController ClosestShip => closestShip;
@@ -32,5 +33,13 @@ public class AIPerception
                 }
             }
         }
+
+        var h = Physics2D.OverlapCircle(ship.transform.position, 600, LayerMask.GetMask("Default"));
+        if (h != null && h.GetComponent<NavigationTarget>() != null)
+        {
+            navigationTarget = h.transform;
+        }
     }
+    
+    
 }

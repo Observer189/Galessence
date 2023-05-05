@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MoreMountains.Tools;
 using UnityEngine;
 
 public class ClassicMovement : PropertyObject, IMovementSystem
@@ -11,6 +12,8 @@ public class ClassicMovement : PropertyObject, IMovementSystem
     public Transform forwardDir;
     //public float mainEnginePower;
     public float sideThrottlesPower;
+    [Tooltip("Угол в пределах которого считается, что мы точно развернулись на цель")]
+    public float rotationEpsilon;
     /*public float maxSpeed;
     public float angularPower;
     public float angularSpeed;*/
@@ -107,17 +110,23 @@ public class ClassicMovement : PropertyObject, IMovementSystem
             shell.AddImpulse(forwardDir.right*sideThrottlesPower*Time.deltaTime);
         }
         //Debug.Log($"Target: {-targetMovement.x*angularSpeed}, Current: {shipBody.angularVelocity}, Torque: {((-targetMovement.x*angularSpeed)-shipBody.angularVelocity)}");
-        
-        
+        ///Рассчитываем максимальную скорость которую мы можем развить или наоборот сбросить
+        var maxMomentaryAngularSpeed = AngularPower / (Mathf.Deg2Rad * shipBody.inertia);
         
         var targetAngularSpeed = (-targetMovement.x * AngularSpeed);
         if (targetRotation != null)
         {
-            if (Mathf.Abs(targetRotation.Value)<0.1f)
+            ///Если мы и так достаточно точно развенуты на цель, то сбрасываем скорость до нуля
+            if (Mathf.Abs(targetRotation.Value)<rotationEpsilon)
             {
                 targetRotation = 0;
+                targetAngularSpeed = 0;
             }
-            targetAngularSpeed = targetRotation.Value;
+            else
+            {
+                targetAngularSpeed = Mathf.Sign(targetRotation.Value) * maxMomentaryAngularSpeed;
+            }
+            
             //Debug.Log(targetRotation.Value);
             //Debug.Log((AngularPower/shipBody.inertia)*Mathf.Rad2Deg);
             /*Debug.Log($"Target angular speed: {shipBody.angularVelocity}");
@@ -126,12 +135,17 @@ public class ClassicMovement : PropertyObject, IMovementSystem
         }
         lastFrameAngularSpeed = shipBody.angularVelocity;
         //Debug.Log(targetRotation);
-        var torque = (targetAngularSpeed - shipBody.angularVelocity)*20* Mathf.Deg2Rad * shipBody.inertia;
+        var torque = (targetAngularSpeed - shipBody.angularVelocity)* Mathf.Deg2Rad * shipBody.inertia;
         torque = Mathf.Sign(torque)*Mathf.Min(Mathf.Abs(torque), AngularPower);
         shipBody.AddTorque(torque,ForceMode2D.Impulse);
-
+        //MMDebug.DebugDrawArrow(shipBody.position,shipBody.transform.up,Color.green,10f,1f);
         
         targetRotation = null;
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        if(shipBody!=null)
+        Gizmos.DrawLine(shipBody.position,shipBody.transform.position+shipBody.transform.up*100);
+    }
 }
