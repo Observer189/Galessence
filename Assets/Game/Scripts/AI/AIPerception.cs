@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class AIPerception
 {
-    protected List<ShipController> enemyShips;
+    protected List<IVessel> enemyShips;
 
-    protected ShipController closestShip;
+    protected IVessel closestShip;
 
     public Transform navigationTarget;
-    public List<ShipController> EnemyShips => enemyShips;
+    public List<IVessel> EnemyShips => enemyShips;
 
-    public ShipController ClosestShip => closestShip;
+    public IVessel ClosestShip => closestShip;
 
-    public void UpdateInfo(ShipController ship)
+    public void UpdateInfo(IVessel ship)
     {
-        enemyShips = new List<ShipController>();
+
+        enemyShips = new List<IVessel>();
         
         var hit = Physics2D.OverlapCircleAll(ship.transform.position, 60, LayerMask.GetMask("Ships"));
         foreach (var col in hit)
         {
             float minDist = float.MaxValue;
-            var s = col.GetComponent<ShipController>();
+            var s = col.GetComponent<IVessel>();
             if (s != null && s.Owner.team.number != ship.Owner.team.number)
             {
                 enemyShips.Add(s);

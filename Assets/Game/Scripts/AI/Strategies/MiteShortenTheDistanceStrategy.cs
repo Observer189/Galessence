@@ -12,7 +12,7 @@ public class MiteShortenTheDistanceStrategy : AIStrategy
 
     public override void ApplyStrategy(ShipOrder order, AIMind mind)
     {
-        order.movementHasRotationDirection = true;
+        order.movementOrderType = MovementOrderType.RotationTo;
         if (mind.Perception.ClosestShip != null)
         {
             Vector3 moveVec = new Vector3(mind.Perception.ClosestShip.transform.position.x, 0,

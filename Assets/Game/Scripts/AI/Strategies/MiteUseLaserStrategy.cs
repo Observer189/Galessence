@@ -12,7 +12,7 @@ public class MiteUseLaserStrategy : AIStrategy
             return 0;
         }
 
-        var laser = mind.Ship.GetComponent<LaserWeapon>();
+        var laser = mind.Ship.transform.GetComponent<LaserWeapon>();
         var hits = Physics2D.RaycastAll(laser.BeamStartPosition.position,laser.BeamStartPosition.up,laser.BeamRange,laser.BeamTargetMask);
         
         if (hits.Length > 0)
@@ -23,7 +23,7 @@ public class MiteUseLaserStrategy : AIStrategy
         
         if (hits.Length > 0)
         {
-            var ship = hits[0].rigidbody.GetComponent<ShipController>();
+            var ship = hits[0].rigidbody.GetComponent<IVessel>();
             if (ship != null && ship.Owner.team.number != mind.Ship.Owner.team.number)
             {
                 return 100;

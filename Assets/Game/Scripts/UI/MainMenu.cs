@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public void OnPressStartButton()
     {
-        SceneLoader.Instance.LoadScene("BattleScene","LoadingScene");
+        SceneLoader.Instance.LoadScene("NavigationScene","LoadingScene");
     }
 
     public void OnPressQuitButton()

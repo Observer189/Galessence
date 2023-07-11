@@ -8,10 +8,10 @@ public class PropertyObject : MonoBehaviour
     public PropertyInitializationInfo[] objectProperties;
     
     protected PropertyManager _propertyManager;
-    protected ShipController owner;
+    protected IVessel owner;
     public virtual void Initialize() //Иногда может выполниться раньше собственного Awake. Это нужно, чтобы к моменту инициализации способностей, все свойства были уже заданы
     {
-        owner = gameObject.GetComponentInParent<ShipController>();
+        owner = gameObject.GetComponentInParent<IVessel>();
         _propertyManager = GetComponent<PropertyManager>();
         if (_propertyManager == null)//гарантия того что объекты с компонентом health имеют PropertyManager
         {

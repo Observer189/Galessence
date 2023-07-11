@@ -20,4 +20,6 @@ public class SimpleMovement : MonoBehaviour, IMovementSystem
     }
 
     public float MaxSpeed { get; }
+    
+    public float AngularSpeed { get; }
 }

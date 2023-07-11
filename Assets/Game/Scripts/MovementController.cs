@@ -24,15 +24,28 @@ public class MovementController : MonoBehaviour, IShipActionController
     {
         if (currentOrder != null)
         {
-            if (currentOrder.movementHasRotationDirection)
+            if (currentOrder.movementOrderType == MovementOrderType.RotationTo)
             {
                 movementSystem.SetMovement(new Vector2(0,currentOrder.movement.y));
                 movementSystem.SetRotationTo(new Vector2(currentOrder.movement.x,currentOrder.movement.z));
             }
-            else
+            else if(currentOrder.movementOrderType == MovementOrderType.Direct)
             {
                 movementSystem.SetMovement(currentOrder.movement);
             }
+            else if (currentOrder.movementOrderType == MovementOrderType.TargetSpeed)
+            {
+                movementSystem.SetMovement(currentOrder.movement);
+                movementSystem.SetTargetSpeedMode(true);
+            }
+            else if(currentOrder.movementOrderType == MovementOrderType.TargetSpeedWithRotationTo)
+            {
+                movementSystem.SetMovement(currentOrder.movement);
+                movementSystem.SetRotationTo(new Vector2(currentOrder.movement.x,currentOrder.movement.w));
+                movementSystem.CalculateAngularDesireSpeedByRotationTo();
+                movementSystem.SetTargetSpeedMode(true);
+            }
+
             movementSystem.SetUseThrottles(currentOrder.leftAdditionalMovement, currentOrder.rightAdditionalMovement);
         }
 

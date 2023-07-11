@@ -123,15 +123,15 @@ public class Afterburner : PropertyObject, IShipActionController
             //Если мы используем форсаж, то переопределяем приказ так, чтобы там было указано, что корабль движется вперед
             if (order.secondaryWeapon || (order.leftAdditionalMovement && order.rightAdditionalMovement))
             {
-                order.movement = order.movement.MMSetY(1);
+                order.movement = order.movement.SetY(1);
             }
             else if (shipOrder.leftAdditionalMovement)
             {
-                order.movement = order.movement.MMSetX(-1);
+                order.movement = order.movement.SetX(-1);
             }
             else if (shipOrder.rightAdditionalMovement)
             {
-                order.movement = order.movement.MMSetX(1);
+                order.movement = order.movement.SetX(1);
             }
         }
     }

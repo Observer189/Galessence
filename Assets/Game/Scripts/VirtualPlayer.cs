@@ -18,7 +18,8 @@ public class VirtualPlayer : MonoBehaviour
     {
         if (playerType == PlayerType.AI)
         {
-            Instantiate(ship.info.AIMindPrefab,transform).GetComponent<AIMind>().SetShip(ship);
+            Debug.Log(ship.ShipInfo.AIMindPrefab);
+            Instantiate(ship.ShipInfo.AIMindPrefab,transform).GetComponent<AIMind>().SetShip(ship);
         }
 
         if (ship != null)
@@ -29,7 +30,7 @@ public class VirtualPlayer : MonoBehaviour
                 //CameraManager.Instance.SetFollowTarget(ship.cameraTarget);
                 var ord = new CameraOrder();
                 ord.changeMode = true;
-                ord.target1 = ship.cameraTarget;
+                ord.target1 = ship.CameraTarget;
                 ord.newMode = CameraMode.OneTarget;
                 CameraManager.Instance.UpdateCameraOrder(ord);
             }
@@ -72,12 +73,12 @@ public class VirtualPlayer : MonoBehaviour
                 if (currentCameraOrder.newMode == CameraMode.TwoTarget ||
                     CameraManager.Instance.Mode == CameraMode.TwoTarget)
                 {
-                    ShipController closestShip = null;
+                    IVessel closestShip = null;
                     var hit = Physics2D.OverlapCircleAll(ship.transform.position, 60, LayerMask.GetMask("Ships"));
                     foreach (var col in hit)
                     {
                         float minDist = float.MaxValue;
-                        var s = col.GetComponent<ShipController>();
+                        var s = col.GetComponent<IVessel>();
                         if (s != null && s.Owner.team.number != ship.Owner.team.number)
                         {
                             var dist = Vector2.SqrMagnitude(ship.transform.position - s.transform.position);

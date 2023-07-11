@@ -14,7 +14,7 @@ public class TargetDetector : MonoBehaviour
         _coneOfVision2D = GetComponent<MMConeOfVision2D>();
     }
 
-    public Vector2? DetectTarget(ShipController owner)
+    public Vector2? DetectTarget(IVessel owner)
     {
         _coneOfVision2D.SetDirectionAndAngles(transform.up,Vector3.zero);
         Vector2? target = null;

@@ -14,7 +14,7 @@ public class MissileController : MonoBehaviour
     private ClassicMovement movementSystem;
     private Rigidbody2D missileBody;
 
-    public ShipController Owner { get; set; }
+    public IVessel Owner { get; set; }
     public bool IsActive { get; private set; }
     private void Awake()
     {

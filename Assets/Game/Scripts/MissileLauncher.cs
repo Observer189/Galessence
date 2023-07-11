@@ -27,7 +27,7 @@ public class MissileLauncher : MonoBehaviour
     {
         if(currentMissile==null) return;
 
-        currentMissile.Owner = GetComponent<ShipController>();
+        currentMissile.Owner = GetComponent<IVessel>();
         currentMissile.transform.parent = null;
         currentMissile.DelayedActivation(missileActivationDelay);
         

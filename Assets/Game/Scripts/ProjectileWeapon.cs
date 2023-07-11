@@ -31,12 +31,12 @@ public class ProjectileWeapon : MonoBehaviour, IShipActionController
     protected PropertyManager _propertyManager;
 
     protected ShipOrder currentOrder;
-    protected ShipController controller;
+    protected IVessel controller;
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         shell = GetComponent<Shell>();
-        controller = GetComponent<ShipController>();
+        controller = GetComponent<IVessel>();
         _propertyManager = GetComponent<PropertyManager>();
     }
 

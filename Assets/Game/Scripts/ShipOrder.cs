@@ -9,11 +9,17 @@ using UnityEngine;
 public class ShipOrder
 {
     //Describes ship movement
-    public Vector3 movement;
-    //If true then movement vector is considered as point in world space that ship want to be headed
+    public Vector4 movement;
+    //Determine how movement system considers input movement vector
+    //If RotationTo then movement vector is considered as point in world space that ship want to be headed
     //as follows: y is gas/brake and (x,z) is (x,y) coordinates of rotation target in world space
-    //If false than considered y-axis as gas/brake and x as rotate left/right
-    public bool movementHasRotationDirection;
+    //If direct then considered y-axis as gas/brake and x as rotate left/right
+    //If TargetSpeed then y - axis is target speed for direction that ship is headed
+    //x - target rotation speed
+    //z - axis is target speed for direction perpendicular for one that ship is headed
+    //If TargetSpeedWithRotationTo then (x,w) - point in 2d space that ship should rotate to
+    //y, z as in normal TargetSpeedMode
+    public MovementOrderType movementOrderType;
     //Mouse pointer in world space or target for ship's weapons for AI
     public Vector2 aim;
     //Whether main weapon is firing or not
@@ -35,15 +41,15 @@ public class ShipOrder
 
     public ShipOrder GetCopy()
     {
-        return new ShipOrder(movement, movementHasRotationDirection, aim, mainWeapon, secondaryWeapon, leftAdditionalMovement,
+        return new ShipOrder(movement, movementOrderType, aim, mainWeapon, secondaryWeapon, leftAdditionalMovement,
             rightAdditionalMovement, special1, special2);
     }
 
-    public ShipOrder(Vector3 movement, bool movementHasRotationDirection, Vector2 aim, bool mainWeapon, 
+    public ShipOrder(Vector4 movement, MovementOrderType movementOrderType, Vector2 aim, bool mainWeapon, 
         bool secondaryWeapon, bool leftAdditionalMovement, bool rightAdditionalMovement, bool special1, bool special2)
     {
         this.movement = movement;
-        this.movementHasRotationDirection = movementHasRotationDirection;
+        this.movementOrderType = movementOrderType;
         this.aim = aim;
         this.mainWeapon = mainWeapon;
         this.secondaryWeapon = secondaryWeapon;
@@ -52,4 +58,9 @@ public class ShipOrder
         this.special1 = special1;
         this.special2 = special2;
     }
+}
+
+public enum MovementOrderType
+{
+    Direct, RotationTo, TargetSpeed, TargetSpeedWithRotationTo
 }

@@ -28,6 +28,8 @@ public class CameraManager : MMSingleton<CameraManager>
     protected Transform target1;
     protected Transform target2;
 
+    protected Transform followTargetInFreeMode;
+
     protected CameraOrder currentOrder;
 
     public CameraMode Mode => mode;
@@ -72,7 +74,7 @@ public class CameraManager : MMSingleton<CameraManager>
             mainCamera=Camera.main;
         }
 
-        Debug.Log(mode);
+        //Debug.Log(mode);
         switch (mode)
         {
             case CameraMode.Off:
@@ -148,8 +150,13 @@ public class CameraManager : MMSingleton<CameraManager>
     {
         if (currentOrder != null)
         {
+
             virtualCamera.m_Lens.OrthographicSize += currentOrder.zoom * zoomSpeed*Time.deltaTime;
             var keyBoardMovement = (Vector3)currentOrder.movement.normalized * freeModeSpeed * Time.deltaTime;
+            if (currentOrder.movement.magnitude > 0.1f)
+            {
+                followTargetInFreeMode = null;
+            }
 
             #region MovementByMouse
 
@@ -171,11 +178,28 @@ public class CameraManager : MMSingleton<CameraManager>
             #endregion
             
             AuxilaryTransform.position += keyBoardMovement + (Vector3)mouseMovement;
-            Debug.Log( keyBoardMovement + (Vector3)mouseMovement);
+            //Debug.Log( keyBoardMovement + (Vector3)mouseMovement);
         }
         
         virtualCamera.m_Lens.OrthographicSize =
             Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize, minCameraSize, maxCameraSize);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit != null && hit.collider.attachedRigidbody!=null 
+                            && hit.collider.attachedRigidbody.GetComponent<IVessel>()!=null)
+            {
+                followTargetInFreeMode = hit.collider.attachedRigidbody.transform;
+            }
+        }
+        
+        if (followTargetInFreeMode !=null)
+        {
+            target1 = followTargetInFreeMode;
+            HandleOneTarget();
+        }
+        
     }
 
     public void UpdateCameraOrder(CameraOrder order)

@@ -15,5 +15,6 @@ MonoBehaviour:
   name: 
   length: 0
   width: 0
-  prefab: {fileID: 0}
-  aiMindPrefab: {fileID: 0}
+  prefab: {fileID: 2627224129724521284, guid: 7c1d3cd7e59a80c498e351de512bfea6, type: 3}
+  aiMindPrefab: {fileID: 3329721283988675068, guid: 2b02bc1373d122e48bc0670f8d572241,
+    type: 3}

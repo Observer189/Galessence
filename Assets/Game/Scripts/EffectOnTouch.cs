@@ -59,7 +59,7 @@ public class EffectOnTouch : MonoBehaviour
     /// <summary>
     /// Владелец объекта, наносящего урон
     /// </summary>
-    protected ShipController owner;
+    protected IVessel owner;
     /// <summary>
     /// Список объектов, находящихся в зоне эффекта + время когда в последний раз на них производилось
     /// наложение эффекта
@@ -271,13 +271,13 @@ public class EffectOnTouch : MonoBehaviour
         collidingObjects.Remove(other);
     }
 
-    public void SetOwner(ShipController character)
+    public void SetOwner(IVessel character)
     {
         owner = character;
 
         if (ignoreOwnerCollision)
         {
-            Physics2D.IgnoreCollision(owner.GetComponent<Collider2D>(),GetComponentInChildren<Collider2D>());
+            Physics2D.IgnoreCollision(owner.transform.GetComponent<Collider2D>(),GetComponentInChildren<Collider2D>());
         }
     }
 
